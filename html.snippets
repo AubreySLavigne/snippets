@@ -1,0 +1,34 @@
+
+#############
+# Base HTML #
+#############
+
+snippet html "HTML5 New Page" b
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>$1</title>
+		<meta name="description" content="${2:Page Description}">
+		<meta name="author" content="${3:Aubrey Lavigne}">
+
+		${4:Scripts}
+	</head>
+	<body>
+		$0
+	</body>
+</html>
+endsnippet
+
+############
+# Includes #
+############
+
+snippet css "CSS Include Tag" b
+<link rel="stylesheet" href="${1:css/styles.css}">
+endsnippet
+
+snippet script "Script Tag" b
+<script src="js/scripts.js"></script>
+endsnippet
+

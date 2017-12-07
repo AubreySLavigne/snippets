@@ -1,0 +1,29 @@
+
+#############
+# #!Shebang #
+#############
+
+snippet #!php "Start PHP Script" b
+#!`which php`
+<?php
+$0
+endsnippet
+
+snippet #!bash "Start Bash Script" b
+#!`which bash`
+$0
+endsnippet
+
+snippet #!py "Start Python3 Script" b
+#!`which python3`
+$0
+endsnippet
+
+############
+# Datetime #
+############
+
+snippet dt "DateTime Format - e.g. 2017-11-15 12:11:15" 
+${1:`date +'%Y'`}-${2:`date +'%m'`}-${3:`date +'%d'`} ${4:`date +'%H'`}:${5:`date +'%M'`}:${6:`date +'%S'`}
+endsnippet
+

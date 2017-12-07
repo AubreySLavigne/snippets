@@ -1,0 +1,87 @@
+
+#############
+# Functions #
+#############
+
+snippet f "Basic Function Defintion" b
+def ${1:func_name}(${2:var1}):
+	$0
+endsnippet
+
+snippet r "Return Statement" b
+return $0
+endsnippet
+
+###########
+# Classes #
+###########
+
+snippet c "Basic Class Definition" b
+class ${1:ClassName}:
+
+	def __init__(self, ${2:var}):
+		self.$2 = $2	
+
+$0
+endsnippet
+
+snippet m "Basic Method" b
+def ${1:method_name}(self, ${2:var}):
+	$0
+endsnippet
+
+######################
+# Control Statements #
+######################
+
+snippet if "If Control Block" b
+if ${1:true}:
+	$0
+endsnippet
+
+snippet ifel "If-Else Control Block" b
+if ${1:true}:
+	$2
+else:
+	$0
+endsnippet
+
+snippet for "For Loop" b
+for ${1:item} in ${2:list|string}:
+	$0
+endsnippet
+
+############
+# Varibles #
+############
+
+snippet v "Python Variable Declaration" b
+${1:var_name} = ${2:'val'}
+$0
+endsnippet
+
+snippet env "Environment Variable" 
+os.getenv('${1:HOME}')$0
+endsnippet
+
+############
+# Packages #
+############
+
+snippet i "Import Package" b
+import ${1:pkg}
+$0
+endsnippet
+
+################
+# Input/Output #
+################
+
+snippet e "Print without Newline" b
+print(${1:'text'}, end='')$0
+endsnippet
+
+snippet en "Print with Newline" b
+print(${1:'text'})$0
+endsnippet
+
