@@ -1,0 +1,45 @@
+
+snippet nf "New Golang file" b
+package main
+
+import "fmt"
+
+func main() {
+	${1:fmt.Println("${2:Hello World}")}$0
+}
+endsnippet
+
+snippet en "Print out with New Line" b
+fmt.Println("${1:"Text"}")$0
+endsnippet
+
+snippet c "Define Type" b
+type ${1:Name} struct {
+	$0
+}
+endsnippet
+
+snippet f "Function Defintion" b
+func ${1:funcName}() {
+	$0
+}
+endsnippet
+
+snippet v "Variable Declare" b
+var ${1:name} ${2:type}$0
+endsnippet
+
+snippet := "Assign to undeclared variable" b
+${1:name} := ${2:"val"}$0
+endsnippet
+
+snippet forrange "For Range Template" b
+for ${1:_}, ${2:v} := range ${3:map_name} {
+	$0
+}
+endsnippet
+
+snippet r "Return" b
+return $1
+endsnippet
+

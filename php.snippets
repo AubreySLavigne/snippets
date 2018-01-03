@@ -9,6 +9,20 @@ foreach($${1:_} as $${2:__}) {
 }
 endsnippet
 
+snippet f "For" b
+for(${1:$i} = 0; $1 < ${2:$count}; $1++) {
+	$0
+}
+endsnippet
+
+snippet in "Is value in array?"
+in_array(${1:needle}, ${2:haystack})
+endsnippet
+
+snippet := "Check isset" b
+$$1 = isset($$2) ? $$2 : null;
+endsnippet
+
 snippet err "Display PHP Errors" b
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -22,9 +36,14 @@ snippet eol "PHP End of Line"
 PHP_EOL
 endsnippet
 
+snippet ro "Require Once" b
+require_once '${1:lib.php}';
+$0
+endsnippet
+
 snippet pre "Surround Command with <pre> tags" b
 echo '<pre>';
-${0:$VISUAL}
+$0
 echo '</pre>';
 endsnippet
 
@@ -45,12 +64,21 @@ catch(${1:\Exception} $${2:e}) {
 }
 endsnippet
 
+snippet r "return" b
+return$0;
+endsnippet
+
 snippet te "Throws Exception" b
 throw new \\${1:Exception}('${2:message}');
 endsnippet
 
 snippet xm "Exception $message"
 $${1:e}->getMessage()
+endsnippet
+
+snippet redirect "Redirect" b
+header("Location: ${1:/index.php}");
+exit;
 endsnippet
 
 snippet error_log "PHP Error Log" b

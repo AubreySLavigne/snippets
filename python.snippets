@@ -5,7 +5,7 @@
 
 snippet f "Basic Function Defintion" b
 def ${1:func_name}(${2:var1}):
-	$0
+	${0:pass}
 endsnippet
 
 snippet r "Return Statement" b
@@ -18,16 +18,67 @@ endsnippet
 
 snippet c "Basic Class Definition" b
 class ${1:ClassName}:
-
-	def __init__(self, ${2:var}):
-		self.$2 = $2	
-
-$0
+	${0:pass}
 endsnippet
 
 snippet m "Basic Method" b
-def ${1:method_name}(self, ${2:var}):
-	$0
+def ${1:method_name}(self${2:, var}):
+	"""${2:Comment}"""
+	${0:pass}
+endsnippet
+
+snippet minit "Class Constructor" b
+def __init__(self${1:, var}):
+	${0:pass}
+endsnippet
+
+snippet mwith "Allow class to be called in 'with' block" b
+def __enter__(self):
+	return self
+
+def __exit__(self, type, value, traceback):
+	pass
+endsnippet
+
+snippet mv "Python Variable within class" b
+self.${1:var_name} = ${0:None}
+endsnippet
+
+############
+# Comments #
+############
+
+snippet fdoc "Function Doc Block (outside of a class)" b
+"""${1:Short Desc}
+
+${2:Long Desc}
+
+Args:
+	${3:param_name: Param Desc}
+
+Returns:
+	${4:Return Desc}
+
+Yields:
+	${5:Yields Desc - Generators Only}
+
+Raises:
+	${6:Raises Desc}
+"""$0
+endsnippet
+
+snippet cdoc "Class Doc Block" b
+"""${1:Summary of Class}
+
+${2:More Class Information}
+
+Attributes:
+${3:attribute_name: description}
+"""$0
+endsnippet
+
+snippet mdoc "Method Doc Block" b
+"""${1}"""${0}
 endsnippet
 
 ######################
@@ -35,20 +86,24 @@ endsnippet
 ######################
 
 snippet if "If Control Block" b
-if ${1:true}:
-	$0
+if ${1:True}:
+	${0:pass}
 endsnippet
 
 snippet ifel "If-Else Control Block" b
-if ${1:true}:
-	$2
+if ${1:True}:
+	${2:pass}
 else:
-	$0
+	${0:pass}
 endsnippet
 
 snippet for "For Loop" b
 for ${1:item} in ${2:list|string}:
-	$0
+	${0:pass}
+endsnippet
+
+snippet in "Python 'x in y' structure"
+${1:x} in ${2:y}
 endsnippet
 
 ############
@@ -56,8 +111,7 @@ endsnippet
 ############
 
 snippet v "Python Variable Declaration" b
-${1:var_name} = ${2:'val'}
-$0
+${1:var_name} = ${0:None}
 endsnippet
 
 snippet env "Environment Variable" 
@@ -70,7 +124,10 @@ endsnippet
 
 snippet i "Import Package" b
 import ${1:pkg}
-$0
+endsnippet
+
+snippet fi "Import Specific Module from Package" b
+from ${1:pkg} import ${2:module}
 endsnippet
 
 ################
@@ -83,5 +140,21 @@ endsnippet
 
 snippet en "Print with Newline" b
 print(${1:'text'})$0
+endsnippet
+
+snippet e% "Print with Variables in String" b
+print('$1' % ($2))
+endsnippet
+
+#####################
+# External Programs #
+#####################
+
+snippet exec "Execute External Scripts" b
+subprocess.check_output(['${1:ls}'$2])$0
+endsnippet
+
+snippet s% "String with Variables" 
+'$1' % ($2)$0
 endsnippet
 
