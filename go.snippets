@@ -1,4 +1,11 @@
 
+global !p
+def get_func_return_types(_):
+	"""Returns the return types defined for this function"""
+	return "val, err"
+endglobal
+
+
 ####################
 # General Snippets #
 ####################
@@ -74,6 +81,6 @@ for ${1:_}, ${2:v} := range ${3:map_name} {
 endsnippet
 
 snippet r "Return" b
-return $1
+return $1`!p snip.rv = get_func_return_types('placeholder')`$0
 endsnippet
 
