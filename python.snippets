@@ -5,6 +5,7 @@
 
 snippet f "Basic Function Defintion" b
 def ${1:func_name}(${2:var1}):
+	"""${3:Comment}"""
 	${0:pass}
 endsnippet
 
@@ -17,13 +18,14 @@ endsnippet
 ###########
 
 snippet c "Basic Class Definition" b
-class ${1:ClassName}:
+class ${1:ClassName}(${2:object}):
+	"""${3:Desc}"""
 	${0:pass}
 endsnippet
 
 snippet m "Basic Method" b
 def ${1:method_name}(self${2:, var}):
-	"""${2:Comment}"""
+	"""${3:Comment}"""
 	${0:pass}
 endsnippet
 
@@ -42,6 +44,19 @@ endsnippet
 
 snippet mv "Python Variable within class" b
 self.${1:var_name} = ${0:None}
+endsnippet
+
+snippet decf "Create a Function Decorator" b
+def ${1:decorator_name}(f):
+	"""${2:Description}
+
+	Decorator: Usage: @$1
+	"""
+
+	def new_f():
+		#define functionality
+		f()
+	return new_f$0
 endsnippet
 
 ############
