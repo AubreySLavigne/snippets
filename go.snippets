@@ -43,6 +43,18 @@ snippet v "Variable Declare" b
 var ${1:name} ${2:type}$0
 endsnippet
 
+snippet c "Define Type" b
+type ${1:Name} struct {
+	$0
+}
+endsnippet
+
+snippet t "Type Definition" b
+type ${1:Name} struct {
+	${2:variable type}
+}$0
+endsnippet
+
 #############
 # Variables #
 #############
