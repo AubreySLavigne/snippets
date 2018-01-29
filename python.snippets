@@ -182,3 +182,16 @@ snippet s% "String with Variables"
 '$1' % ($2)$0
 endsnippet
 
+############
+# Setup.py #
+############
+
+snippet setup "Default setup.py" b
+from distutils.core import setup
+
+setup(
+    name='${1:ProjectName}',
+    version='${2:x.x-version}',
+    packages=['${3:className}',],
+)
+endsnippet
