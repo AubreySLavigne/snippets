@@ -2,15 +2,19 @@
 snippet nf "New Golang file" b
 package main
 
-import "fmt"
+import (
+    "fmt"
+)
 
 func main() {
 	${1:fmt.Println("${2:Hello World}")}$0
 }
 endsnippet
 
-snippet en "Print out with New Line" b
-fmt.Println("${1:"Text"}")$0
+snippet i "Import Statement" b
+import (
+	${0:"fmt"}
+)
 endsnippet
 
 snippet c "Define Type" b
