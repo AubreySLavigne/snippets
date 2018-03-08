@@ -13,3 +13,9 @@ snippet # "Make Header Comment" b
 ##${1/./#/g}##
 endsnippet
 
+snippet gs "Global Snippet" b
+global !p
+def ${1:global_name}(${2}):
+    return ${3:None}
+endglobal
+endsnippet
