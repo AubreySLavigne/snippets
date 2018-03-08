@@ -1,12 +1,23 @@
+global !p
+import re
+def clean_name(proposed):
+    return re.sub('[^A-Za-z0-9]+', '_', proposed)
+endglobal
 
 #############
 # Functions #
 #############
 
 snippet f "Basic Function Defintion" b
-def ${1:func_name}(${2:var1}):
-	"""${3:Comment}"""
+def ${1:func_name}(${2:var1}) -> ${3:None}:
+	"""${4:Comment}"""
 	${0:pass}
+endsnippet
+
+snippet frni "Stub Functions, not implemented" b
+def ${1:do_action}() -> None:
+	"""${2:Describe this Action}"""
+	${0:raise NotImplementedError}
 endsnippet
 
 snippet r "Return Statement" b
@@ -14,12 +25,12 @@ return $0
 endsnippet
 
 snippet fmain "Main Function Definition" b
-def main():
-	${0:pass}
+def `!p snip.rv = clean_name(snip.basename)`() -> None:
+    ${0:pass}
 
 
 if __name__ == '__main__':
-	main()
+    `!p snip.rv = clean_name(snip.basename)`()
 endsnippet
 
 ###########
@@ -33,13 +44,13 @@ class ${1:ClassName}(${2:object}):
 endsnippet
 
 snippet m "Basic Method" b
-def ${1:method_name}(self${2:, var}):
-	"""${3:Comment}"""
+def ${1:method_name}(self${2:, var}) -> ${3:None}:
+	"""${4:Comment}"""
 	${0:pass}
 endsnippet
 
 snippet minit "Class Constructor" b
-def __init__(self${1:, var}):
+def __init__(self${1:, var}) -> None:
 	${0:pass}
 endsnippet
 
@@ -137,6 +148,10 @@ except ${2:Error}:
 	${3:pass}
 endsnippet
 
+snippet rni "Raise Not Implemented" b
+raise NotImplementedError
+endsnippet
+
 ############
 # Varibles #
 ############
@@ -201,4 +216,12 @@ setup(
     version='${2:x.x-version}',
     packages=['${3:className}',],
 )
+endsnippet
+
+#######################
+# Regular Expressions #
+#######################
+
+snippet re.sub "Regex Substitution" A
+re.sub(${1:'.'}, ${2:''}, ${3:var})
 endsnippet
