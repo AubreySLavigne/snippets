@@ -28,57 +28,33 @@ import (
 )
 endsnippet
 
-##################
-# Display Output #
-##################
-
-snippet en "Print out with New Line" b
-fmt.Printf("${1:Text}"${2})$0
-endsnippet
 
 ##################
 # Go Definitions #
 ##################
 
 snippet f "Function Defintion" b
-func ${1:funcName}() {
+// $1$5
+func $2${1:funcName}($3) $4{
 	$0
 }
 endsnippet
 
-snippet v "Variable Declare" b
-var ${1:name} ${2:type}$0
-endsnippet
 
-snippet c "Define Type" b
-type ${1:Name} struct {
-	$0
+##########
+# Errors #
+##########
+
+snippet iferr "Standard Error Block" b
+if err != nil {
+	log.Error(err)
 }
 endsnippet
 
-snippet t "Type Definition" b
-type ${1:Name} struct {
-	${2:variable type}
-}$0
-endsnippet
-
-#############
-# Variables #
-#############
-
-snippet := "Assign to undeclared variable" b
-${1:name} := ${2:"val"}$0
-endsnippet
 
 #######################
 # Language Structures #
 #######################
-
-snippet forrange "For Range Template" b
-for ${1:_}, ${2:v} := range ${3:map_name} {
-	$0
-}
-endsnippet
 
 snippet r "Return" b
 return $1`!p snip.rv = get_func_return_types('placeholder')`$0
