@@ -10,17 +10,17 @@ endglobal
 
 snippet f "Basic Function Defintion" b
 def ${1:func_name}(${2}) -> ${3:None}:
-	"""
+	'''
 	${4:Comment}
-	"""
+	'''
 	${0:pass}
 endsnippet
 
 snippet frni "Stub Functions, not implemented" b
 def ${1:do_action}() -> None:
-	"""
+	'''
 	${2:Describe this Action}
-	"""
+	'''
 	${0:raise NotImplementedError}
 endsnippet
 
@@ -43,17 +43,17 @@ endsnippet
 
 snippet c "Basic Class Definition" b
 class ${1:ClassName}(${2:object}):
-	"""
+	'''
 	${3:Desc}
-	"""
+	'''
 	${0:pass}
 endsnippet
 
 snippet m "Basic Method" b
 def ${1:method_name}(self${2:, var}) -> ${3:None}:
-	"""
+	'''
 	${4:Comment}
-	"""
+	'''
 	${0:pass}
 endsnippet
 
@@ -81,10 +81,11 @@ endsnippet
 
 snippet decf "Create a Function Decorator" b
 def ${1:decorator_name}(f):
-	"""${2:Description}
+	'''
+	${2:Description}
 
 	Decorator: Usage: @$1
-	"""
+	'''
 
 	def new_f():
 		#define functionality
@@ -97,7 +98,7 @@ endsnippet
 ############
 
 snippet fdoc "Function Doc Block (outside of a class)" b
-"""
+'''
 ${1:Short Desc}
 
 ${2:Long Desc}
@@ -113,21 +114,24 @@ Yields:
 
 Raises:
 	${6:Raises Desc}
-"""$0
+'''$0
 endsnippet
 
 snippet cdoc "Class Doc Block" b
-"""${1:Summary of Class}
+'''
+${1:Summary of Class}
 
 ${2:More Class Information}
 
 Attributes:
  	${3:attribute_name: description}
-"""$0
+'''$0
 endsnippet
 
 snippet mdoc "Method Doc Block" b
-"""${1}"""${0}
+'''
+${1}
+'''${0}
 endsnippet
 
 ######################
@@ -253,9 +257,9 @@ endsnippet
 
 snippet af "Async Function Def" b
 async def ${1:func_name}(${2}) -> ${3:None}:
-"""
+'''
 ${4:Comment}
-"""
+'''
 ${0:pass}
 endsnippet
 
@@ -266,10 +270,10 @@ endsnippet
 
 snippet ptest "Pytest stub" b
 def test_${2}():
-	"""
+	'''
 	Tests ${1:function}()
-	"""
-    ${3:pass}
+	'''
+	${3:pass}
 $0
 endsnippet
 
@@ -279,9 +283,9 @@ snippet ptparam "Pytest stub with parameterized arguments" b
 		(30, 10, 20)
 ])
 def test_${3}($2):
-	"""
+	'''
 	Tests ${1:function}()
-	"""
+	'''
 	${4:pass}
 	$0
 endsnippet
