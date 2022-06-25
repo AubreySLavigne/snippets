@@ -19,6 +19,13 @@ do
 done
 endsnippet
 
+# This `while read -r` structure avoids subprocesses.
+snippet whileline "For each line in input" b
+while read -r ${3:line}; do
+	${4:echo "$$3"}
+done ${2:<<<} ${1:""}
+endsnippet
+
 snippet ifempty "Check for unset or empty" b
 if [ -z "${1:${VISUAL:$var}}" ]; then
 	$0
