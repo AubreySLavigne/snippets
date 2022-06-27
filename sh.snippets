@@ -1,4 +1,3 @@
-
 #############
 # Variables #
 #############
@@ -7,6 +6,7 @@ snippet v "Basic Variable Declaration" b
 ${1:var}=${2:""}
 $0
 endsnippet
+
 
 ######################
 # Control Structures #
@@ -19,6 +19,7 @@ do
 done
 endsnippet
 
+
 # This `while read -r` structure avoids subprocesses.
 snippet whileline "For each line in input" b
 while read -r ${3:line}; do
@@ -26,11 +27,13 @@ while read -r ${3:line}; do
 done ${2:<<<} ${1:""}
 endsnippet
 
+
 snippet ifempty "Check for unset or empty" b
 if [ -z "${1:${VISUAL:$var}}" ]; then
 	$0
 fi
 endsnippet
+
 
 snippet ifdire "Check if-else Direcotry" b
 if [ -d "${1:\$dir}" ]; then
@@ -40,9 +43,11 @@ else
 fi
 endsnippet
 
+
 snippet die "Exit Script with failure" b
 exit 1
 endsnippet
+
 
 #############
 # Functions #
@@ -54,14 +59,17 @@ function ${1:func_name} () {
 }
 endsnippet
 
+
 snippet param "Function Parameter" b
 ${1:param}= "$${2:1}"
 $0
 endsnippet
 
+
 snippet call "Call Function" b
 ${1:func_name} ${0:"params"}
 endsnippet
+
 
 ################
 # Print Output #
@@ -70,4 +78,3 @@ endsnippet
 snippet en "Echo with Newline" b
 echo "$1"$0
 endsnippet
-

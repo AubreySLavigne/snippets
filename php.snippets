@@ -1,4 +1,3 @@
-
 ###############
 # General PHP #
 ###############
@@ -9,37 +8,45 @@ foreach($${1:_} as $${2:__}) {
 }
 endsnippet
 
+
 snippet f "For" b
 for(${1:$i} = 0; $1 < ${2:$count}; $1++) {
 	$0
 }
 endsnippet
 
+
 snippet in "Is value in array?"
 in_array(${1:needle}, ${2:haystack})
 endsnippet
 
+
 snippet := "Check isset" b
 $$1 = isset($$2) ? $$2 : null;
 endsnippet
+
 
 snippet err "Display PHP Errors" b
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 endsnippet
 
+
 snippet en "Echo with new line" b
 echo "${1:text}" . PHP_EOL;
 endsnippet
+
 
 snippet eol "PHP End of Line" 
 PHP_EOL
 endsnippet
 
+
 snippet ro "Require Once" b
 require_once '${1:lib.php}';
 $0
 endsnippet
+
 
 snippet pre "Surround Command with <pre> tags" b
 echo '<pre>';
@@ -47,13 +54,16 @@ $0
 echo '</pre>';
 endsnippet
 
+
 snippet vd "var_dump" b
 var_dump( $$0 ); 
 endsnippet
 
+
 snippet pr "print_r" 
 print_r($${1:var}, true)${0:;}
 endsnippet
+
 
 snippet try "try-catch block" b
 try {
@@ -64,26 +74,32 @@ catch(${1:\Exception} $${2:e}) {
 }
 endsnippet
 
+
 snippet r "return" b
 return$0;
 endsnippet
+
 
 snippet te "Throws Exception" b
 throw new \\${1:Exception}('${2:message}');
 endsnippet
 
+
 snippet xm "Exception $message"
 $${1:e}->getMessage()
 endsnippet
+
 
 snippet redirect "Redirect" b
 header("Location: ${1:/index.php}");
 exit;
 endsnippet
 
+
 snippet error_log "PHP Error Log" b
 error_log(${1:message});
 endsnippet
+
 
 snippet if "standard if block" b
 if ($1) {
@@ -91,11 +107,13 @@ if ($1) {
 }
 endsnippet
 
+
 snippet map "array map" 
 array_map(function($${1:item}) {
 	return $$1;
 }, ${2:array});$0
 endsnippet
+
 
 snippet <$s "Multiline String (Heredoc), parses variables" 
 <<<${1:STR}
@@ -103,11 +121,13 @@ $0
 $1;
 endsnippet
 
+
 snippet <s "Multiline String (Nowdoc), no variable parsing" 
 <<<'${1:STR}'
 $0
 $1;
 endsnippet
+
 
 ##########
 # PHPDoc #
@@ -117,17 +137,21 @@ snippet @p "PHPDoc Param tag"
 @param ${1:string} $${2:var} ${3:description} $0
 endsnippet
 
+
 snippet @g "PHPDoc Global tag" 
 @global ${1:string} $${2:var} ${3:description} $0
 endsnippet
+
 
 snippet @r "PHPDocs Return Tag" 
 @return ${1:string} $0
 endsnippet
 
+
 snippet @t "PHPDocs Throws Tag" 
 @throws ${1:\Exception} $0
 endsnippet
+
 
 #########
 # Faker #
@@ -137,21 +161,26 @@ snippet fake "Get Faker" b
 $faker = Faker\Factory::create();
 endsnippet
 
+
 snippet fid "Fake ID" 
 $faker->md5
 endsnippet
+
 
 snippet fdt "Fake DateTime" 
 $faker->dateTimeBetween('${1:-30 years}', '${2:now}')->format('Y-m-d H:i:s')
 endsnippet
 
+
 snippet fw "Fake Word" 
 $faker->word
 endsnippet
 
+
 snippet fnb "Faker Number Between" 
 $faker->numberBetween(${1:0}, ${2:10})
 endsnippet
+
 
 ########
 # Slim #
@@ -161,8 +190,8 @@ snippet endpoint "Slim API Endpoint" b
 $this->${1:get}('$2', '\STM\Route\\${3:RouteClass}:${4:method}');
 endsnippet
 
+
 snippet group "Slim API Group" b
 ${1:app|this}->group('${2:/group}', function() {
 });
 endsnippet
-
