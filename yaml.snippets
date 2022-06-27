@@ -1,0 +1,73 @@
+snippet k8s_namespace "Kubernetes Namespace" b
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ${1:name}
+  labels:
+    name: $1
+endsnippet
+
+
+snippet k8s_configmap "Kubernetes ConfigMap" b
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ${1:name}
+data:
+  ${2:key: value}
+endsnippet
+
+
+snippet k8s_secret "Kubernetes Secret" b
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ${1:name}
+data:
+  ${2:key: value}
+endsnippet
+
+
+snippet k8s_envfrom "Kubernetes envFrom" b
+envFrom:
+  - configMapRef:
+      name: ${1:name}
+endsnippet
+
+
+snippet k8s_service "Kubernetes External Service" b
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${1:name}
+  namespace: ${2:namespace}
+spec:
+  type: ExternalName
+  externalName: ${3:foo.bar.com}
+  ports:
+    - name: default
+      port: 33
+      protocol: TCP
+      targetPort: 42
+endsnippet
+
+
+snippet k8s_job "Kubernetes Job" b
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ${1:name}
+spec:
+  backOffLimit: 1
+  template:
+    spec:
+      containers:
+        - name: $1
+          image: ${2:alpine:latest}
+      restartPolicy: Never
+endsnippet
