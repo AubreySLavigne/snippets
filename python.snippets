@@ -34,7 +34,10 @@ def main() -> None:
 
 
 if __name__ == '__main__':
-    main()
+	try:
+		main()
+	except KeyboardInterrupt:
+		print('Program Execution cancled by KeyboardInterrupt')
 endsnippet
 
 ###########
@@ -261,6 +264,20 @@ async def ${1:func_name}(${2}) -> ${3:None}:
 ${4:Comment}
 '''
 ${0:pass}
+endsnippet
+
+
+#############
+# Arguments #
+#############
+
+snippet args "Import argparse library and default args" b
+import argparse
+
+def get_args() -> argparse.Namespace:
+	parser = argparse.ArgumentParser(description='${1:Desc}')
+	$0
+	return parser.parse_args()
 endsnippet
 
 
