@@ -1,0 +1,159 @@
+snippet loc "Local Block" b
+locals {
+	$0
+}
+endsnippet
+
+# Converts dynamic block into placeholder
+snippet dynamic "Dynamic Block" b
+dynamic "${1:`!p
+import re
+lines = snip.v.text.splitlines()
+if len(lines) > 0:
+	snip.rv = re.sub(r'[\W]+', '', lines[0])
+`}" {
+	for_each = ${2:local.var}
+
+	content {
+		$0${3:`!p
+content_lines = [x for x in lines[1:] if '=' in x]
+snip.rv = '\n'.join(content_lines)
+`}
+	}
+}
+endsnippet
+
+snippet r_sns_topic "SNS Topic Resource" b
+resource "aws_sns_topic" "${2:${1/-/_/g}}" {
+	name         = "${1:${VISUAL:name}}"
+	display_name = "${3:$1}"
+}
+endsnippet
+
+snippet var "Terraform Variable" b
+variable "${1:Name}" {
+	description = "$2"
+	type        = ${3:any}
+}
+endsnippet
+
+snippet r_k8s_sa "Kubernetes Service Account Resource" b
+resource "kubernetes_service_account" "${2:$1}" {
+	metadata {
+		name = "${1:sa_name}"
+		namespace = "${3:default}"
+
+		annotations {
+			name = "$1"
+		}
+	}
+}
+endsnippet
+
+snippet p_grafana "Grafana Provider" b
+provider "grafana" {
+	url  = "${1:localhost}"
+	auth = "${2:basic:auth}"
+}
+
+terraform {
+	required_providers {
+		grafana = {
+			source = "grafana/grafana"
+		}
+	}
+}
+endsnippet
+
+# Converts JSON policy to terraform aws_iam_policy_document data resource
+snippet d_policy_doc "IAM Policy Document Block" b
+data "aws_iam_policy_document" "${1:doc_name}" {
+`!p
+import json
+
+def values_of(block):
+	if type(block) is not list:
+		return f'["{block}"]'
+
+	lines = [f'      "{line}",' for line in block]
+	res = '\n'.join(lines)
+	return f" [\n{res}\n    ]"
+
+def condition(block):
+	conditions = []
+	for test, cond in block.items():
+		for var, values in cond.items():
+			conditions.append({
+				'test': test,
+				'var': var,
+				'values': values,
+			})
+
+	lines = []
+	for cond in conditions:
+		test = cond['test']
+		var = cond['var']
+		values = cond['values']
+
+		lines.append('    condition {')
+		lines.append(f'      test = "{test}"')
+		lines.append(f'      variable = "{var}"')
+		lines.append(f'      values = {values_of(values)}')
+		lines.append('    }')
+
+	return '\n'.join(lines)
+
+def principal(block):
+	principal = []
+	for type, values in block.items():
+		principal.append({
+			'type': type,
+			'values': values,
+		})
+
+	lines = []
+	for cond in principal:
+		type = cond['type']
+		values = cond['values']
+
+		lines.append('    principals {')
+		lines.append(f'      type = "{type}"')
+		lines.append(f'      identifiers = {values_of(values)}')
+		lines.append('    }')
+
+	return '\n'.join(lines)
+
+res = []
+
+json_body = json.loads(snip.v.text)
+header = []
+if 'Id' in json_body:
+	header.append(f"  policy_id = \"{json_body['Id']}\"")
+if 'Version' in json_body:
+	header.append(f"  version = \"{json_body['Version']}\"")
+if header:
+	res.append('\n'.join(header))
+
+for stmt in json_body['Statement']:
+	block = []
+	block.append('  statement {')
+
+	if 'Sid' in stmt:
+		block.append(f"    sid = \"{stmt['Sid']}\"")
+	block.append(f"    effect = \"{stmt['Effect']}\"")
+	block.append(f"    actions = {values_of(stmt['Action'])}")
+	if 'Resource' in stmt:
+		block.append(f"    resources = {values_of(stmt['Resource'])}")
+	if 'Condition' in stmt:
+		block.append(f"{condition(stmt['Condition'])}")
+	if 'Principal' in stmt:
+		block.append(f"{principal(stmt['Principal'])}")
+
+	block.append('  }')
+
+	res.append('\n'.join(block))
+
+snip.rv += '\n\n'.join(res)
+`
+}
+endsnippet
