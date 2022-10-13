@@ -1,0 +1,53 @@
+global !p
+
+from pathlib import Path
+import subprocess
+
+def active_branch_name() -> str:
+	'''
+	Returns name of current branch
+
+	From https://stackoverflow.com/a/62724213/5474145
+	'''
+	head_dir = Path(".") / ".git" / "HEAD"
+	with head_dir.open("r") as f: content = f.read().splitlines()
+
+	for line in content:
+		if line[0:4] == "ref:":
+			return line.partition("refs/heads/")[2]
+
+	raise ValueError('No Branch Name Found')
+
+def current_ticket_key() -> str:
+	'''
+	Returns ticket key for the current branch
+	'''
+	branch = active_branch_name()
+
+	reg = re.compile(r'.*?([A-Za-z]+-[0-9]+).*')
+	match = reg.match(branch)
+	if match:
+		return match.groups()[0]
+
+	return branch
+
+def ticket_desc(key: str) -> str:
+	res = subprocess.run(['ticket-desc', key], capture_output=True)
+	return res.stdout.decode('utf-8')
+
+endglobal
+
+
+###############################
+# Default Git Commit Messages #
+###############################
+
+snippet t "Create Commit Message based off current branch name" b
+`!p
+ticket = current_ticket_key()
+`[${1:`!p
+snip.rv = ticket.upper()
+`}] ${2:`!p
+snip.rv = ticket_desc(ticket)
+`}
+endsnippet
