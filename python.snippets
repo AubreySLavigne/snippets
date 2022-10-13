@@ -360,3 +360,21 @@ else
 	assert $3 == ${4:expected}
 	$0
 endsnippet
+
+
+#################
+# File Handling #
+#################
+
+snippet read_csv "Read from CSV file" b
+with open('${1:filename.csv}', 'r') as csvfile:
+	reader = csv.reader(csvfile)
+	for row in reader:
+		print(row)
+endsnippet
+
+snippet read_json "Read from JSON file" b
+with open('${1:filename.json}', 'r') as infile:
+	${2:res} = json.load(infile)
+endsnippet
+
