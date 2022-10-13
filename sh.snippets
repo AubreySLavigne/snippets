@@ -78,3 +78,7 @@ endsnippet
 snippet en "Echo with Newline" b
 echo "$1"$0
 endsnippet
+
+snippet err "Echo to stderr" b
+>&2 echo "${1:error}"
+endsnippet

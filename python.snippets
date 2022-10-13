@@ -240,6 +240,10 @@ snippet e% "Print with Variables in String" b
 print('$1' % ($2))
 endsnippet
 
+snippet err "Print to stderr" b
+print('$1', file=sys.stderr)
+endsnippet
+
 
 #####################
 # External Programs #
