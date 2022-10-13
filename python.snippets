@@ -335,7 +335,7 @@ snippet ptparam "Pytest stub with parameterized arguments" b
 @pytest.mark.parametrize("${2:a,b,res}", [
 	(${2/,/, /g}),
 ])
-def test_${3}(${2/,/, /g}):
+def test_${1/\./_/g}(${2/,/, /g}):
 	'''
 	Tests ${1:function}()
 	'''
