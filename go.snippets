@@ -59,3 +59,32 @@ endsnippet
 snippet r "Return" b
 return $1`!p snip.rv = get_func_return_types('placeholder')`$0
 endsnippet
+
+
+#########
+# Tests #
+#########
+
+snippet test "Go Test with test table" b
+func Test${1:Name}(t *testing.T) {
+	tests := []struct {
+		name     string
+		input    []string
+		expected string
+	}{
+		{
+			name:     "Empty Input",
+			input:    []string{},
+			expected: "Result",
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			res := $1(test.input)
+
+			t.Errorf("${2:Unexpected Result}. Got %s, Expected %s", res, test.expected)
+		})
+	}
+}
+endsnippet
