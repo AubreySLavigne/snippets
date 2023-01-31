@@ -390,3 +390,15 @@ with open('${1:filename.json}', 'r') as infile:
 	${2:res} = json.load(infile)
 endsnippet
 
+
+###########
+# Linting #
+###########
+
+snippet #pylint-ignore "File Ignore for Pylint" b
+# pylint: disable=${1:global-statement}
+endsnippet
+
+snippet #mypy-ignore "File Ignore for MyPy" b
+# pylint: disable=${1:global-statement}
+endsnippet
