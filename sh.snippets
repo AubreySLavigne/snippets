@@ -19,7 +19,6 @@ do
 done
 endsnippet
 
-
 # This `while read -r` structure avoids subprocesses.
 snippet whileline "For each line in input" b
 while read -r ${3:line}; do
@@ -27,13 +26,11 @@ while read -r ${3:line}; do
 done ${2:<<<} ${1:""}
 endsnippet
 
-
 snippet ifempty "Check for unset or empty" b
 if [ -z "${1:${VISUAL:$var}}" ]; then
 	$0
 fi
 endsnippet
-
 
 snippet ifdire "Check if-else Direcotry" b
 if [ -d "${1:\$dir}" ]; then
@@ -42,7 +39,6 @@ else
 	$0
 fi
 endsnippet
-
 
 snippet die "Exit Script with failure" b
 exit 1
@@ -59,12 +55,10 @@ function ${1:func_name} () {
 }
 endsnippet
 
-
 snippet param "Function Parameter" b
 ${1:param}= "$${2:1}"
 $0
 endsnippet
-
 
 snippet call "Call Function" b
 ${1:func_name} ${0:"params"}

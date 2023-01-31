@@ -8,7 +8,6 @@ metadata:
     name: $1
 endsnippet
 
-
 snippet k8s_configmap "Kubernetes ConfigMap" b
 ---
 apiVersion: v1
@@ -18,7 +17,6 @@ metadata:
 data:
   ${2:key: value}
 endsnippet
-
 
 snippet k8s_secret "Kubernetes Secret" b
 ---
@@ -30,13 +28,11 @@ data:
   ${2:key: value}
 endsnippet
 
-
 snippet k8s_envfrom "Kubernetes envFrom" b
 envFrom:
   - configMapRef:
       name: ${1:name}
 endsnippet
-
 
 snippet k8s_service "Kubernetes External Service" b
 ---
@@ -54,7 +50,6 @@ spec:
       protocol: TCP
       targetPort: 42
 endsnippet
-
 
 snippet k8s_job "Kubernetes Job" b
 ---
