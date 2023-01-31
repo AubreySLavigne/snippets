@@ -1,9 +1,19 @@
+################################
+# General Terraform Structures #
+################################
+
 snippet loc "Local Block" b
 locals {
 	$0
 }
 endsnippet
 
+snippet var "Terraform Variable" b
+variable "${1:Name}" {
+	description = "$2"
+	type        = ${3:any}
+}
+endsnippet
 
 # Converts dynamic block into placeholder
 snippet dynamic "Dynamic Block" b
@@ -25,21 +35,9 @@ snip.rv = '\n'.join(content_lines)
 endsnippet
 
 
-snippet r_sns_topic "SNS Topic Resource" b
-resource "aws_sns_topic" "${2:${1/-/_/g}}" {
-	name         = "${1:${VISUAL:name}}"
-	display_name = "${3:$1}"
-}
-endsnippet
-
-
-snippet var "Terraform Variable" b
-variable "${1:Name}" {
-	description = "$2"
-	type        = ${3:any}
-}
-endsnippet
-
+#################################
+# Kubernetes Provider Resources #
+#################################
 
 snippet r_k8s_sa "Kubernetes Service Account Resource" b
 resource "kubernetes_service_account" "${2:$1}" {
@@ -54,6 +52,10 @@ resource "kubernetes_service_account" "${2:$1}" {
 }
 endsnippet
 
+
+##############################
+# Grafana Provider Resources #
+##############################
 
 snippet p_grafana "Grafana Provider" b
 provider "grafana" {
@@ -70,6 +72,17 @@ terraform {
 }
 endsnippet
 
+
+##########################
+# AWS Provider Resources #
+##########################
+
+snippet r_sns_topic "SNS Topic Resource" b
+resource "aws_sns_topic" "${2:${1/-/_/g}}" {
+	name         = "${1:${VISUAL:name}}"
+	display_name = "${3:$1}"
+}
+endsnippet
 
 # Converts JSON policy to terraform aws_iam_policy_document data resource
 snippet d_policy_doc "IAM Policy Document Block" b
