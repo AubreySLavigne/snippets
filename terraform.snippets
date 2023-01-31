@@ -15,6 +15,14 @@ variable "${1:Name}" {
 }
 endsnippet
 
+snippet [for "List Comprehension"
+[for ${2:item} in ${1:var.list} : ${3:upper($2)}]
+endsnippet
+
+snippet {for "Object Comprehension"
+{for ${2:item} in ${1:var.list} : ${3:key} => ${4:upper($2)}}
+endsnippet
+
 # Converts dynamic block into placeholder
 snippet dynamic "Dynamic Block" b
 dynamic "${1:`!p
